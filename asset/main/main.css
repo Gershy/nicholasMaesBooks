@@ -1,0 +1,469 @@
+@keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes fade-up { 0% { margin-top: 100%; } 100% { margin-top: 0; } }
+
+html, body {
+  position: fixed;
+  width: 100%; height: 100%;
+  left: 0; top: 0;
+  margin: 0; padding: 0;
+  overflow: hidden;
+  
+  color: #ffffff;
+  background-color: #000000;
+  pointer-events: none;
+}
+body {
+  background-image: url('bg');
+  background-size: cover;
+  animation: fade-in 1000ms 1 linear;
+}
+
+h1 { margin: 0; }
+a.link {
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  z-index: 10;
+}
+
+.texture1 { background-color: #000000; }
+.texture1::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-image: url('texture');
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.colour-adult, .colour-adult-bg { background-color: rgba(0, 255, 255, 0.2); }
+.colour-adult, .colour-adult-txt { color: #39d9d9; }
+.colour-adult:hover, .colour-adult-bg:hover { background-color: rgba(0, 255, 255, 0.32); }
+.colour-adult:hover, .colour-adult-txt:hover { color: #00ffff; }
+
+.colour-ya, .colour-ya-bg { background-color: rgba(255, 255, 0, 0.2); }
+.colour-ya, .colour-ya-txt { color: #c1c120; }
+.colour-ya:hover, .colour-ya-bg:hover { background-color: rgba(255, 255, 0, 0.32); }
+.colour-ya:hover, .colour-ya-txt:hover { color: #ffff00; }
+
+.colour-nf, .colour-nf-bg { background-color: rgba(255, 0, 255, 0.2); }
+.colour-nf, .colour-nf-txt { color: #d818d8; }
+.colour-nf:hover, .colour-nf-bg:hover { background-color: rgba(255, 0, 255, 0.32); }
+.colour-nf:hover, .colour-nf-txt:hover { color: #ff6cff; }
+
+.colour-bio, .colour-bio-bg { background-color: rgba(255, 255, 255, 0.15); }
+.colour-bio, .colour-bio-txt { color: #c8c8c8; }
+.colour-bio:hover, .colour-bio-bg:hover { background-color: rgba(255, 255, 255, 0.27); }
+.colour-bio:hover, .colour-bio-txt:hover { color: #ffffff; }
+
+#text-streams {
+  position: fixed; width: 100%; height: 100%; left: 0; top: 0;
+  overflow: hidden;
+  animation: fade-in 1500ms 1 linear;
+  z-index: 0;
+}
+#text-streams > .text-stream {
+  position: absolute;
+  white-space: pre;
+}
+
+#container {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  animation: fade-in 2500ms 1 linear;
+  pointer-events: all;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: sans-serif;
+}
+#container > .main {
+  display: block;
+  position: relative;
+  width: 100%; height: 100vh;
+  margin-bottom: 20px;
+}
+#container > .main > .content {
+  position: absolute;
+  width: 82%; height: 82%;
+  left: 9%; top: 9%;
+  box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.5);
+}
+#container > .main > .content > .branding {
+  position: relative;
+  text-align: center;
+  padding: 45px 20px 45px;
+  height: 205px;
+  white-space: nowrap;
+  z-index: 1;
+}
+#container > .main > .content > .branding > .logo {
+  font-size: 200px;
+  line-height: 180px;
+  letter-spacing: -20px;
+  text-indent: -20px;
+  color: #ffffff;
+  transform: scale(1.15, 1);
+}
+#container > .main > .content > .branding > .name {
+  font-size: 26px;
+  color: #ffffff;
+  margin-left: 18px;
+  transform: scale(1, 1);
+}
+#container > .main > .content > .nav {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 305px);
+  z-index: 1;
+}
+#container > .main > .content > .nav > .category {
+  position: absolute;
+  width: 28%; height: 75%;
+  top: 0;
+  overflow: hidden;
+}
+#container > .main > .content > .nav > .category > .text {
+  position: absolute;
+  width: 100%; height: 30px; line-height: 30px;
+  left: 0; top: 70%;
+  text-align: center;
+  font-size: 140%;
+  z-index: 3;
+}
+
+#container > .main > .content > .nav > .category > .img {
+  position: absolute;
+  width: 100%; height: 70%;
+  left: 0; top: 0;
+  z-index: 2;
+}
+#container > .main > .content > .nav > .category > .img > img { position: absolute; display: none; margin: auto; }
+#container > .main > .content > .nav > .adult > .img {
+  background-image: url('deadMansFloatIconText');
+  background-size: contain;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+  width: 90%; left: 5%; height: 100%;
+}
+#container > .main > .content > .nav > .ya > .img {
+  background-image: url('swords');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70%; top: 5%;
+}
+#container > .main > .content > .nav > .ya > .text { top: 80%; }
+
+#container > .main > .content > .nav > .adult { left: 4%; }
+#container > .main > .content > .nav > .ya { left: 36%; }
+#container > .main > .content > .nav > .nf { left: 68%; }
+
+#container > .main > .content > .nav > .adult > .img {}
+#container > .main > .content > .nav > .adult > .img > img {
+  margin-bottom: -80%;
+}
+
+#container > .main > .content > .nav > .nf > .img {
+  display: flex; flex-direction: column; justify-content: center;
+}
+#container > .main > .content > .nav > .nf > .img::before {
+  content: '\2018\2018';
+  letter-spacing: -30px;
+  text-indent: -30px;
+  color: rgba(255, 255, 255, 0.83);
+  text-align: center;
+  font-size: 400px; line-height: 400px;
+  font-family: mono;
+  height: 230px;
+}
+
+#container > .main > .content > .nav > .bio {
+  position: absolute;
+  width: 34%; height: 17%;
+  left: 33%; bottom: 4%;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 120%;
+}
+#container > .main > .content > .nav > .bio::before {
+  content: '';
+  display: inline-block;
+  position: relative;
+  width: 0; height: 100%;
+  vertical-align: middle;
+}
+#container > .main > .content > .nav > .bio > .text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 95%;
+}
+
+#container > .section.intro { text-align: justify; min-height: 476px; font-size: 120%; }
+#container > .section.intro > img {
+  float: left;
+  width: 300px; height: 400px;
+  margin: 20px;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
+}
+
+#container > .content {
+  position: relative;
+  width: 80%; margin: 0 auto 0;
+  background-color: #000000;
+}
+
+#container > .section {
+  position: relative;
+  width: 70%; margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #000000;
+  box-shadow: 0 0 0 14px rgba(0, 0, 0, 0.5);
+  margin-bottom: 60px;
+  text-align: center;
+}
+#container > .section > * { position: relative; z-index: 1; }
+#container > .section > h1 { height: 120px; line-height: 120px; font-size: 250%; }
+
+/* 3d books */
+#container > .section > .book {
+  position: relative;
+  width: 100%; height: 450px;
+  perspective: 33cm;
+  perspective-origin: 50% 74%;
+  margin-bottom: 60px;
+  z-index: 0;
+}
+#container > .section > .book:hover { z-index: 1; }
+#container > .section > .book > .bookElem {
+  left: 50%; top: 0; margin-left: -150px;
+  position: absolute;
+  width: 300px;
+  height: 450px;
+  transform-origin: 0% 50%;
+  transition: left 800ms ease-in-out, transform 800ms ease-in-out;
+  pointer-events: none;
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.4);
+}
+#container > .section > .book:hover > .bookElem { left: 43%; }
+#container > .section > .book > .cover { z-index: 3; background-size: cover; backface-visibility: hidden; }
+#container > .section > .book > .page1 { z-index: 2; backface-visibility: hidden; }
+#container > .section > .book > .page2 { z-index: 1; }
+
+#container > .section > .book > .cover { transform: rotate3d(0, 1, 0, 0); }
+#container > .section > .book:hover > .cover { transform: rotate3d(0, 1, 0, -0.45turn) scale(0.85); }
+
+#container > .section > .book > .page1 { transform: rotate3d(0, 1, 0, 0) rotate3d(1, 0, 0, 0.5turn); }
+#container > .section > .book:hover > .page1 { transform: rotate3d(0, 1, 0, -0.45turn) rotate3d(1, 0, 0, 0.5turn) scale(0.85); }
+
+#container > .section > .book > .page2 { transform: rotate3d(0, 1, 0, 0); }
+#container > .section > .book:hover > .page2 { transform: rotate3d(0, 1, 0, -0.05turn) scale(0.85); }
+
+#container > .section > .book > .page1 > .content {
+  position: absolute;
+  width: 100%; height: 100%; left: 0; top: 0;
+  transform: rotate(180deg);
+  color: rgba(0, 0, 0, 0);
+}
+
+#container > .section > .book > .page {
+  background-color: #fff7e8;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+  color: #000000;
+}
+#container > .section > .book > .page > .content {
+  padding: 10px; box-sizing: border-box;
+}
+#container > .section > .book > .page > .content > .title {
+  position: absolute;
+  width: 100%; height: 40px; line-height: 40px;
+  left: 0; top: 50%;
+  margin-top: -40px;
+  font-size: 40px;
+}
+#container > .section > .book > .page > .content > .credit {
+  position: absolute;
+  width: 100%; height: 20px; line-height: 20px;
+  left: 0; top: 50%;
+  margin-top: 10px;
+  font-size: 14px;
+}
+#container > .section > .book > .page2 {
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: left;
+  font-size: 140%;
+  font-family: serif;
+  line-height: 135%;
+}
+
+#container > .section > .book > .page1 > .content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  filter: opacity(0.3) grayscale(0.5) sepia(83%);
+}
+
+.book.dead-mans-float > .cover,
+.book.dead-mans-float > .page1 > .content::before { background-image: url('deadMansFloat'); }
+
+.book.crescent-star > .cover,
+.book.crescent-star > .page1 > .content::before { background-image: url('crescentStar'); }
+
+.book.locksmith > .cover,
+.book.locksmith > .page1 > .content::before { background-image: url('locksmith'); }
+
+.book.laughing-wolf > .cover,
+.book.laughing-wolf > .page1 > .content::before { background-image: url('laughingWolf'); }
+
+.book.transmigration > .cover,
+.book.transmigration > .page1 > .content::before { background-image: url('transmigration'); }
+
+.book.fortuna > .cover,
+.book.fortuna > .page1 > .content::before { background-image: url('fortuna'); }
+
+.book.robertson-davies > .cover,
+.book.robertson-davies > .page1 > .content::before { background-image: url('robertsonDavies'); }
+
+#container > .section > .book > .praise {
+  position: absolute;
+  display: flex; flex-direction: column; justify-content: center;
+  width: 40%; height: 100%;
+  left: 30%; top: 0;
+  color: rgba(255, 255, 255, 0);
+  transition: color 1000ms ease-in-out, left 1000ms ease-in-out;
+  font-family: serif;
+  font-size: 120%;
+  text-align: left;
+}
+#container > .section > .book:hover > .praise {
+  left: 58%;
+  color: rgba(255, 255, 255, 1);
+}
+#container > .section > .book > .praise > h1 { margin-top: -30px; font-size: 160%; }
+#container > .section > .book > .praise > .quote { margin-top: 20px; }
+
+.quote > .text { font-style: italic; margin-bottom: 4px; }
+.quote > .text::before { content: '\201C'; }
+.quote > .text::after { content: '\201D'; }
+.quote > .source::before { content: '- '; }
+
+#container > .section:last-child {
+  margin-bottom: 100px;
+}
+
+#container > .nav {
+  position: fixed;
+  width: 100%; height: 100px;
+  left: 20px; bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-weight: bold;
+  z-index: 3;
+  pointer-events: none;
+}
+#container > .nav > .content {
+  
+  position: absolute;
+  box-sizing: border-box;
+  width: 70%; height: 50px;
+  left: calc(15% - 20px);
+  bottom: 0;
+  margin-bottom: 0;
+  
+  background-color: #202020;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0.3);
+  
+  pointer-events: all;
+  
+  transition: margin-bottom 750ms ease-in-out, box-shadow 750ms ease-in-out;
+  
+}
+#container > .nav.hidden > .content {
+  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0);
+  margin-bottom: -50px;
+}
+#container > .nav > .content > .section {
+  position: relative;
+  display: inline-block;
+  width: calc(25% - 50px / 4); height: 50px;
+  font-size: 16px;
+}
+#container > .nav > .content > .section > .text {
+  position: absolute;
+  width: 100%; height: 50px; line-height: 50px;
+  left: 0; top: 0;
+}
+#container > .nav > .content > .section.icon {
+  width: 50px; height: 50px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 6px #ffffff;
+  transition: background-color 200ms linear, color 200ms linear;
+}
+#container > .nav > .content > .section.icon > .text {
+  width: 50px; height: 50px; line-height: 50px;
+}
+#container > .nav > .content > .section.icon:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#container > .section.the-author { font-size: 120%; }
+#container > .section.the-author > .qa {
+  max-width: 800px;
+  margin: 20px auto 0;
+  text-align: left;
+}
+#container > .section.the-author > .qa:last-child { margin-bottom: 30px; }
+#container > .section.the-author > .qa > .q, #container > .section.the-author > .qa > .a {
+  position: relative;
+  width: 100%;
+}
+#container > .section.the-author > .qa > .q { font-style: italic; }
+#container > .section.the-author > .qa > .q::before { content: 'Q: '; }
+#container > .section.the-author > .qa > .a::before { content: 'A: '; }
+
+@media screen and (max-width: 950px) {
+  
+  #container > .main > .content {
+    position: absolute;
+    width: calc(100% - 40px); height: calc(100% - 40px);
+    left: 20px; top: 20px;
+  }
+  #container > .main > .content > .nav > .bio {
+    width: 80%; left: 10%;
+  }
+  #container > .main { margin-bottom: 14px; }
+  
+  #container > .nav { width: 100%; left: 0; }
+  
+  #container > .section {
+    width: calc(100% - 28px);
+    margin-bottom: 28px;
+  }
+  
+  #container > .section:last-child { margin-bottom: 62px; }
+  
+}
+
+@media screen and (min-width: 1200px) {
+  #container > .section > .book > .praise {
+    left: 58%;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 300ms ease-in-out, left 1000ms ease-in-out, transform 1000ms ease-in-out;
+    transform: scale(0.95);
+  }
+  #container > .section > .book:hover > .praise { transform: scale(1); }
+  #container > .section > .book > .bookElem { left: 30%; }
+}

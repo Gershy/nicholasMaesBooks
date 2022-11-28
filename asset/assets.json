@@ -1,0 +1,24 @@
+{
+
+  "":                      "text/html         asset/main/main.html",
+  "html":                  "text/html         asset/main/main.html",
+  "css":                   "text/css          asset/main/main.css",
+  "js":                    "text/javascript   asset/main/main.js",
+  
+  "favicon.ico":           "image/x-icon      asset/image/nmIcon.png",
+  "icon":                  "image/x-icon      asset/image/nmIcon.png",
+  "bg":                    "image/jpeg        asset/image/bg1.jpg",
+  "texture":               "image/jpeg        asset/image/texture3.jpg",
+  "swords":                "image/png         asset/image/swords.png",
+  "happyAbba":             "image/jpeg        asset/image/happyAbba.jpg",
+  
+  "laughingWolf":          "image/jpeg        asset/image/laughing-wolf.jpg",
+  "deadMansFloatIconText": "image/jpeg        asset/image/dead-mans-float-icon-text.png",
+  "deadMansFloat":         "image/jpeg        asset/image/dead-mans-float.jpg",
+  "locksmith":             "image/jpeg        asset/image/locksmith.jpg",
+  "crescentStar":          "image/jpeg        asset/image/crescent-star.jpg",
+  "transmigration":        "image/jpeg        asset/image/transmigration.jpg",
+  "fortuna":               "image/jpeg        asset/image/fortuna.jpg",
+  "robertsonDavies":       "image/jpeg        asset/image/robertson-davies.jpg"
+
+}
