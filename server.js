@@ -1,4 +1,5 @@
 let [ http, https, fs, path ] = [ 'http', 'https', 'fs', 'path' ].map(require);
+let fsp = fs.promises;
 
 let createProtocolServer = {
   http: async (host, port, fn) => {
@@ -33,8 +34,8 @@ let createProtocolServer = {
       
       // TLS server on given port (probably 443)
       let [ key, cert ] = await Promise.all([
-        fs.promises.readFile(path.join(...certDir, 'privkey.pem')),
-        fs.promises.readFile(path.join(...certDir, 'fullchain.pem'))
+        fsp.readFile(path.join(...certDir, 'privkey.pem')),
+        fsp.readFile(path.join(...certDir, 'fullchain.pem'))
       ]);
       
       let server = destroyableServer(https.createServer({ key, cert }, fn));
@@ -143,19 +144,33 @@ let createProtocolServer = {
   let argv = process.argv[2] || 'http://localhost:80';
   let [ hosting, ...more ] = argv.split(' ');
   
-  let [ , protocol, host, port ] = hosting.match(/^([^:]+):[/][/]([^:]+)[:]([0-9]+)$/);
-  if (!createProtocolServer.hasOwnProperty(protocol)) throw new Error(`Invalid protocol: ${protocol}`);
+  let protocol=null;
+  let host = null;
+  let port = null;
+  
   port = parseInt(port, 10);
   
-  let args = more.join(' ');
-  args = args ? eval(`(${args})`) : {};
-  try {
-    let moreArgs = JSON.parse(await fs.promises.readFile(path.join(__dirname, 'args.js')));
-    args = { ...moreArgs, ...args };
-  } catch(err) {
-    console.log(`No arguments defined in args.js`);
+  // Initialize args
+  let args = {};
+  
+  // Add args from args.json
+  try         { args = JSON.parse(await fsp.readFile(path.join(__dirname, 'args.json'))); }
+  catch (err) { console.log(`No arguments defined in args.js`); }
+  
+  // Add "more" args
+  if (more.length) args = { ...args, ...eval(`(${more.join(' ')})`) };
+  
+  // Parse "hosting" args
+  if (hosting) {
+    let [ , protocol, host, port ] = hosting.match(/^([^:]+):[/][/]([^:]+)[:]([0-9]+)$/) ?? [];
+    args = { ...args, protocol, host, port };
   }
-  console.log('Params:', { protocol, host, port, args });
+  
+  // Done parsing args!
+  console.log('Params:', args);
+  
+  let { protocol, host, port } = args;
+  if (!createProtocolServer.hasOwnProperty(protocol)) throw new Error(`Invalid protocol: ${protocol}`);
   
   // Send response
   let serve = (res, status, content, type) => {
@@ -180,7 +195,7 @@ let createProtocolServer = {
   let readFile = (...fp) => {
     fp = path.join(...fp);
     if (!fileCache.has(fp)) {
-      fileCache.set(fp, fs.promises.readFile(path.join(__dirname, fp)));
+      fileCache.set(fp, fsp.readFile(path.join(__dirname, fp)));
       setTimeout(() => fileCache.delete(fp), cacheMs);
     }
     return fileCache.get(fp);
